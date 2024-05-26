@@ -1,7 +1,8 @@
 import google.generativeai as genai
+from token_api import get_token
 
 
-genai.configure(api_key="AIzaSyBXmDwXVihvovzRUl6J9l0XDStzrezWIjA")
+genai.configure(api_key= get_token())
 
 model = genai.GenerativeModel(model_name="gemini-pro")
 
@@ -27,6 +28,5 @@ def get_questions(text, topic = '', count = 5):
         question = chat.send_message(f'Com base no texto abaixo busque pelo tópico {topic} e produza {count} questões com alternativas com foco no aprendizado do tópico proposto, faça questões inspiradas nas de concurso com questões de multipla escolha(mescle a dificuldade das questões, mas não mostre a dificuldade) e gere o gabarito. Texto: \n {text}')
 
         return question.text
-
 
 
